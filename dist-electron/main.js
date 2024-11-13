@@ -112,7 +112,6 @@ ipcMain.handle("getSources", async () => {
     fetchWindowIcons: true,
     types: ["window", "screen"]
   });
-  console.log("🔴 DISPLAYS", data);
   return data;
 });
 ipcMain.on("media-sources", (event, payload) => {

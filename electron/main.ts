@@ -145,7 +145,7 @@ ipcMain.handle("getSources", async () => {
     types: ["window", "screen"],
   });
 
-  console.log("🔴 DISPLAYS", data);
+  // console.log("🔴 DISPLAYS", data);
   return data;
 });
 
