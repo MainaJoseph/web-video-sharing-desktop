@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, desktopCapturer, ipcMain } from "electron";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -124,7 +124,50 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
     win = null;
+    studio = null;
+    floatingWebCam = null;
   }
+});
+
+ipcMain.on("closeApp", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+    win = null;
+    studio = null;
+    floatingWebCam = null;
+  }
+});
+
+ipcMain.handle("getSources", async () => {
+  const data = await desktopCapturer.getSources({
+    thumbnailSize: { height: 100, width: 150 },
+    fetchWindowIcons: true,
+    types: ["window", "screen"],
+  });
+
+  console.log("🔴 DISPLAYS", data);
+  return data;
+});
+
+ipcMain.on("media-sources", (event, payload) => {
+  console.log(event);
+  studio?.webContents.send("profile-received", payload);
+});
+
+ipcMain.on("resize-studio", (event, payload) => {
+  console.log(event);
+  if (payload.shrink) {
+    studio?.setSize(400, 100);
+  }
+
+  if (!payload.shrink) {
+    studio?.setSize(400, 250);
+  }
+});
+
+ipcMain.on("hide-plugin", (event, payload) => {
+  console.log(event);
+  win?.webContents.send("hide-plugin", payload);
 });
 
 app.on("activate", () => {

@@ -32,15 +32,16 @@ const Widget = () => {
     user: null,
   });
   const { user } = useUser();
-
   const { state, fetchMediaResources } = useMediaSources();
-  console.log(state);
 
   useEffect(() => {
     if (user && user.id) {
-      fetchUserProfile(user.id).then((p) => setProfile(p));
+      Promise.all([
+        fetchUserProfile(user.id).then((p) => setProfile(p)),
+        fetchMediaResources(),
+      ]);
     }
-  }, [user]);
+  }, [user, fetchMediaResources]);
 
   return (
     <div className="p-5">
