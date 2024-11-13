@@ -46,8 +46,6 @@ export const selectSources = async (
   videoElement: React.RefObject<HTMLVideoElement>
 ) => {
   if (onSources && onSources.screen && onSources.audio && onSources.id) {
-    // Disable for single line
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const constraints: any = {
       audio: false,
       video: {

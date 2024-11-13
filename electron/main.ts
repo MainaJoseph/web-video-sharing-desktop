@@ -154,11 +154,12 @@ ipcMain.on("media-sources", (event, payload) => {
   studio?.webContents.send("profile-received", payload);
 });
 
-ipcMain.on("resize-studio", (_, payload) => {
-  // console.log("EVENT:", "resize studio", payload);
+ipcMain.on("resize-studio", (event, payload) => {
+  console.log(event);
   if (payload.shrink) {
     studio?.setSize(400, 100);
   }
+
   if (!payload.shrink) {
     studio?.setSize(400, 250);
   }

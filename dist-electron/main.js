@@ -118,7 +118,8 @@ ipcMain.on("media-sources", (event, payload) => {
   console.log(event);
   studio == null ? void 0 : studio.webContents.send("profile-received", payload);
 });
-ipcMain.on("resize-studio", (_, payload) => {
+ipcMain.on("resize-studio", (event, payload) => {
+  console.log(event);
   if (payload.shrink) {
     studio == null ? void 0 : studio.setSize(400, 100);
   }

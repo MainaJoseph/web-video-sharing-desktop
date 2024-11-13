@@ -1,5 +1,3 @@
-import React from "react";
-
 import { SourceDeviceStateProps } from "@/hooks/useMediaSources";
 import { useStudioSettings } from "@/hooks/useStudioSettings";
 import Loader from "../Loader";

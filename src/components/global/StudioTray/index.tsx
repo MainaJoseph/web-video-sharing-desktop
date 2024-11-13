@@ -1,7 +1,7 @@
 import { onStopRecording, selectSources, StartRecording } from "@/lib/recorder";
 import { cn, videoRecordingTime } from "@/lib/utils";
 import { Cast, Pause, Square } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { date } from "zod";
 
 const StudioTray = () => {
