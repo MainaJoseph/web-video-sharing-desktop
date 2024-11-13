@@ -44,7 +44,7 @@ const Widget = () => {
   }, [user, fetchMediaResources]);
 
   return (
-    <div className="p-5">
+    <div className="p-5 draggable">
       <ClerkLoading>
         <div className="h-full flex justify-center items-center">
           <Loader />
